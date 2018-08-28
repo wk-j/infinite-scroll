@@ -5,7 +5,7 @@ import { InfiniteLoader, List } from 'react-virtualized';
 import { realpathSync } from 'fs';
 
 const list = []
-const remoteRowCount = 1000;
+const remoteRowCount = 100000;
 
 function isRowLoaded({ index }) {
     return !!list[index];
@@ -16,9 +16,10 @@ function loadMoreRows({ startIndex, stopIndex }) {
     for (var i = startIndex; i <= stopIndex; i++) {
         list.push(
             <div>
-                <span>{i} </span>
-                <span>Hello</span>
-                <span> {i}</span>
+                <span style={{ width: 200 }}>{i} </span>
+                <img src="https://avatars0.githubusercontent.com/u/29597?s=40&v=4" />
+                <span style={{ width: 500 }}>fast scrolling in InfiniteLoader scrolls back to top after data is loaded</span>
+                <span style={{ width: 200 }}> {i}</span>
             </div>
         )
     }
@@ -49,7 +50,7 @@ export class MyList extends React.Component {
                         rowCount={remoteRowCount}
                         rowHeight={20}
                         rowRenderer={rowRenderer}
-                        width={300} />
+                        width={800} />
                 )}
             </InfiniteLoader>
         )
